@@ -9,8 +9,10 @@ router.get( '/', ( req, res, next ) => {
 } )
 
 // Post
-// retuer.post( '/', ( req, res, next ) => {
-    
-// } )
+router.post( '/', ( req, res, next ) => {
+    res.status(201).json({
+        info: 'Hello i\'m post route'
+    })    
+} )
 
 module.exports = router
