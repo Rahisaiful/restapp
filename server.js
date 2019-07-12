@@ -1,11 +1,36 @@
 // Import express
 const express = require('express');
-// Import routes
+// middleware morgan
+const morgan = require( 'morgan' );
+// middleware body parser
+const bodyParser = require( 'body-parser' );
+// Cors
+const cors = require('cors');
+//
+const mongoose = require( 'mongoose' )
+//
+mongoose.connect('mongodb://localhost:27017/user',{ useNewUrlParser: true })
+// mongoose connection
+const db = mongoose.connection
+// Import contact routes
 const contactRoute = require( './api/routes/contacts' )
+
 // express app init
 const app = express()
 // Server Port init
 const PORT = process.env.PORT || 3000
+
+
+
+
+/**
+ * 
+ * Middlewares 
+ * 
+ */
+    // json parser
+    const jsonParser = bodyParser.json()
+    
 
 /**
  * 
@@ -13,8 +38,14 @@ const PORT = process.env.PORT || 3000
  * 
  */
 
+    // parse application/json
+    app.use(jsonParser)
+
     // Use routes
-    app.use( '/api/contacts', contactRoute )
+    app.use( '/api/contacts/', contactRoute )
+    app.use( '/contacts/', contactRoute )
+
+    
 
     // 
     app.get( '/', ( req, res ) => {

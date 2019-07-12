@@ -1,15 +1,20 @@
 const express = require( 'express' )
 const router = express.Router()
 
+const GetController = require( '../controllers/controller-contacts' )
+
 // Get
-router.get( '/', ( req, res, next ) => {
-    res.status(200).json( {
-        address: '46/e kolabagan'
-    } );
-} )
+router.get( '/', GetController.getController )
+
+// Get id from url
+router.get( '/:id', GetController.getIdController )
+
+// post
+router.post( '/', GetController.postContactData )
+
 
 // Post
-router.post( '/', ( req, res, next ) => {
+router.post( '/contacts', ( req, res, next ) => {
     res.status(201).json({
         info: 'Hello i\'m post route'
     })    
