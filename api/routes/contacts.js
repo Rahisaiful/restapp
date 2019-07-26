@@ -3,21 +3,15 @@ const router = express.Router()
 
 const GetController = require( '../controllers/controller-contacts' )
 
-// Get
-router.get( '/', GetController.getController )
-
-// Get id from url
-router.get( '/:id', GetController.getIdController )
-
-// post
-router.post( '/', GetController.postContactData )
-
-
+// Get All
+router.get( '/', GetController.getAllContactController )
+// Get by id
+router.get( '/:id', GetController.getContactById )
 // Post
-router.post( '/contacts', ( req, res, next ) => {
-    res.status(201).json({
-        info: 'Hello i\'m post route'
-    })    
-} )
+router.post( '/', GetController.postContactData )
+// Put
+router.put( '/:id', GetController.editContactData )
+// Delete
+router.delete( '/:id', GetController.deleteContactData )
 
 module.exports = router

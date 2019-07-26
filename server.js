@@ -14,6 +14,8 @@ mongoose.connect('mongodb://localhost:27017/user',{ useNewUrlParser: true })
 const db = mongoose.connection
 // Import contact routes
 const contactRoute = require( './api/routes/contacts' )
+// Import users routes
+const usersRoute = require('./api/routes/users')
 
 // express app init
 const app = express()
@@ -41,10 +43,10 @@ const PORT = process.env.PORT || 3000
     // parse application/json
     app.use(jsonParser)
 
-    // Use routes
+    // Contact routes
     app.use( '/api/contacts/', contactRoute )
-    app.use( '/contacts/', contactRoute )
-
+    // User routes
+    app.use( '/api/user/',  usersRoute )
     
 
     // 
